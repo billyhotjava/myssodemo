@@ -2,6 +2,7 @@ cas:
   server:
     address: localhost
 server:
+  address: localhost
   port: 8082
 spring:
   security:
@@ -13,7 +14,7 @@ spring:
             client-id: WXTYJK
             client-secret: secret
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8082/login/oauth2/code/oidc
+            redirect-uri: http://${server.address}:8082/login/oauth2/code/oidc
             scope: openid, profile, email, offline_access
             client-authentication-method: client_secret_basic
         provider:
@@ -25,7 +26,7 @@ spring:
             jwk-set-uri: http://${cas.server.address}:9080/cas/oidc/jwks
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:13306/ainms?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${server.address}:13306/ainms?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
     username: root
     password: RootPassword123!
     hikari:
